@@ -35,7 +35,6 @@ class arcstat(object):
         self.kstat = {}
         self.cur = {}
         self.diff = {}
-        self.prev = {}
         self.interval = 1
         self.last = None
 
@@ -80,10 +79,10 @@ class arcstat(object):
         for key in self.cur:
             if re.match(key, "class"):
                 continue
-            if key in self.prev:
-                self.diff[key] = self.cur[key] - self.prev[key]
+            if key in prev:
+                self.diff[key] = self.cur[key] - prev[key]
             else:
-                self.diff[key] = self.cur[key]
+                self.diff[key] = 0
 
     def calculate(self):
 
